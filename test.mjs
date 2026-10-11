@@ -12,7 +12,7 @@ for (const path of ['index.html', 'personal-cloud/index.html', 'privacy/index.ht
     assert.match(html, /href="#main"/);
     assert.match(html, /<main id="main">/);
     assert.doesNotMatch(html, /<script|<iframe|<form|on(?:click|load)=/i);
-    assert.doesNotMatch(html, /https:\/\/github\.com\/openza\/personal-cloud/, 'Do not advertise inaccessible private-repo links');
+    assert.doesNotMatch(html, /source repository is currently private|OAuth client is currently private|New-user Cloudflare authorization is not yet publicly available/, 'Do not retain outdated source or OAuth visibility claims');
     for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       if (!url.startsWith('/')) continue;
       const pathname = url.split('#')[0];
@@ -25,8 +25,9 @@ for (const path of ['index.html', 'personal-cloud/index.html', 'privacy/index.ht
 test('privacy and onboarding limitations remain explicit', async () => {
   const cloud = await readFile(dist + 'personal-cloud/index.html', 'utf8');
   const privacy = await readFile(dist + 'privacy/index.html', 'utf8');
-  assert.match(cloud, /Public onboarding is not open yet/);
-  assert.match(cloud, /OAuth client is currently private/);
+  assert.match(cloud, /Personal Cloud is still a preview/);
+  assert.match(cloud, /OAuth client is public/);
+  assert.match(privacy, /https:\/\/github\.com\/openza\/personal-cloud/);
   assert.match(privacy, /not<\/strong> provide end-to-end encryption/);
   assert.match(privacy, /Signing out does not erase/);
   const headers = await readFile(dist + '_headers', 'utf8');
