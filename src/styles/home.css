@@ -257,12 +257,6 @@ h1 {
 	content: ' →';
 }
 
-.note {
-	margin: 0;
-	font-size: 13px;
-	color: var(--faint);
-}
-
 .links {
 	display: flex;
 	gap: 20px;

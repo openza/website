@@ -14,7 +14,6 @@ export interface App {
 	guide: string;
 	source: string;
 	downloads: Download[];
-	note?: string;
 }
 
 const microsoftStore = (id: string) => `https://apps.microsoft.com/detail/${id}`;
@@ -30,7 +29,6 @@ export const apps: App[] = [
 			{ platform: 'Linux', store: 'Snap Store', href: 'https://snapcraft.io/openza-tasks' },
 			{ platform: 'Windows', store: 'Microsoft Store', href: microsoftStore('9NQGDKXGRGF8') },
 		],
-		note: 'An updated Windows version is in progress. macOS is planned.',
 	},
 	{
 		name: 'Openza Reader',
