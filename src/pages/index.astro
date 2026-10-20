@@ -1,37 +1,11 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/home.css';
+import { apps } from '../data/apps';
 
-const title = 'Openza Tasks — a calm, local-first task app';
+const title = 'Openza: local-first, open-source desktop apps';
 const description =
-	'Openza Tasks is a simple, local-first task app for Linux. Capture quickly, plan when it helps, and keep your tasks on your own computer. Free and open source.';
-
-const features = [
-	{
-		title: 'Local first',
-		body: 'Your tasks live in a database on your computer. No account, and it works offline.',
-	},
-	{
-		title: 'Plan your way',
-		body: 'Inbox, Next, Waiting For, and Someday when you want a method. A plain list when you do not.',
-	},
-	{
-		title: 'Spaces, projects, labels',
-		body: 'Keep work and home apart, group what belongs together, and tag across both.',
-	},
-	{
-		title: 'Connected apps',
-		body: 'Bring in Todoist and Microsoft To Do tasks, and send completions back.',
-	},
-	{
-		title: 'Always recoverable',
-		body: 'Automatic restore points, backup files, and optional encrypted OneDrive backups.',
-	},
-	{
-		title: 'Scriptable',
-		body: 'A command-line interface on the same tasks, and GitHub issues from any task.',
-	},
-];
+	'Openza makes local-first, open-source desktop apps: Openza Tasks for Linux and Windows, and Openza Reader and Openza Flow for Windows.';
 ---
 
 <!doctype html>
@@ -59,116 +33,63 @@ const features = [
 					<span>Openza</span>
 				</a>
 				<nav aria-label="Main">
-					<a href="/tasks/">Guide</a>
-					<a href="/personal-cloud/">Personal Cloud</a>
+					<a href="#apps">Apps</a>
 					<a href="/privacy/">Privacy</a>
-					<a href="https://github.com/openza/tasks">GitHub</a>
+					<a href="https://github.com/openza">GitHub</a>
 				</nav>
 			</div>
 		</header>
 
 		<main id="main">
 			<section class="wrap hero">
-				<div class="hero-copy">
-					<p class="eyebrow"><img src="/tasks.svg" alt="" width="20" height="20" /> Openza Tasks</p>
-					<h1>A calm place for everything you need to do.</h1>
-					<p class="lede">
-						A simple, local-first task app. Capture in seconds, plan when it helps, and keep your tasks on
-						your own computer.
-					</p>
-					<div class="actions">
-						<a class="button primary" href="https://snapcraft.io/openza-tasks">Get it from the Snap Store</a>
-						<a class="button" href="/tasks/">Read the guide</a>
-					</div>
-					<p class="install"><code>sudo snap install openza-tasks</code></p>
-					<p class="platforms">
-						Linux today. Windows from the <a href="https://apps.microsoft.com/detail/9NQGDKXGRGF8">Microsoft Store</a>,
-						with an updated version in progress. macOS planned.
-					</p>
-				</div>
-
-				<figure class="app" aria-label="Illustration of the Openza Tasks window with example tasks">
-					<div class="app-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-					<div class="app-body">
-						<ul class="app-nav" aria-hidden="true">
-							<li class="active">Inbox <b>3</b></li>
-							<li>Next Actions</li>
-							<li>Today <b>2</b></li>
-							<li>Calendar</li>
-							<li>Waiting For</li>
-							<li>Someday</li>
-						</ul>
-						<div class="app-list">
-							<p class="app-title">Inbox</p>
-							<ul>
-								<li><i></i><div>Write down the next idea<small>Inbox</small></div></li>
-								<li><i></i><div>Finish the first draft<small>Writing · Today</small></div></li>
-								<li><i></i><div>Book a walk outside<small>Personal · Next</small></div></li>
-								<li class="done"><i></i><div>Back up the laptop<small>Home · Completed</small></div></li>
-							</ul>
-						</div>
-					</div>
-					<figcaption>Example content</figcaption>
-				</figure>
+				<h1>Local-first, open-source desktop apps.</h1>
+				<p class="lede">
+					Each app keeps your data on your own computer unless you choose to connect a service. All of them are MIT
+					licensed and send no telemetry.
+				</p>
 			</section>
 
-			<section class="wrap features" aria-labelledby="features-title">
-				<h2 id="features-title">Everything you need. Nothing you don't.</h2>
-				<div class="grid">
+			<section class="wrap apps" id="apps" aria-labelledby="apps-title">
+				<h2 id="apps-title" class="section-label">Apps</h2>
+				<ul class="app-grid">
 					{
-						features.map((feature) => (
-							<article>
-								<h3>{feature.title}</h3>
-								<p>{feature.body}</p>
-							</article>
+						apps.map((app) => (
+							<li class="app-card">
+								<div class="app-head">
+									<img src={app.icon} alt="" width="40" height="40" />
+									<h3>{app.name}</h3>
+								</div>
+								<p class="tagline">{app.tagline}</p>
+								<div class="downloads">
+									{app.downloads.map((download) => (
+										<a class="download" href={download.href}>
+											<span class="platform">{download.platform}</span>
+											<span class="store">{download.store}</span>
+										</a>
+									))}
+								</div>
+								{app.note && <p class="note">{app.note}</p>}
+								<p class="links">
+									<a href={app.guide}>Guide</a>
+									<a href={app.source}>Source</a>
+								</p>
+							</li>
 						))
 					}
-				</div>
+				</ul>
 			</section>
 
-			<section class="wrap cloud" aria-labelledby="cloud-title">
-				<div>
-					<p class="badge">Preview</p>
-					<h2 id="cloud-title">Your tasks on the Web, in your own cloud.</h2>
-					<p>
-						Personal Cloud is an optional Web copy of your tasks, hosted in your own Cloudflare account. Openza never
-						holds your tasks, and your desktop keeps working offline.
-					</p>
-					<a class="link" href="/personal-cloud/">How Personal Cloud works →</a>
-				</div>
-				<ol class="flow" aria-label="How Personal Cloud connects">
-					<li><strong>Your desktop</strong><span>Local database and connected-app sign-ins</span></li>
-					<li><strong>Your Cloudflare</strong><span>Your Web app and task copy</span></li>
-					<li><strong>Your browser</strong><span>Passkey sign-in</span></li>
-				</ol>
-			</section>
-
-			<section class="wrap promise" aria-label="Principles">
-				<p><strong>No account.</strong> Start in seconds.</p>
-				<p><strong>No tracking.</strong> No telemetry or analytics.</p>
+			<section class="wrap promise" aria-label="What every Openza app has in common">
+				<p><strong>Local-first.</strong> Your data lives on your computer.</p>
 				<p><strong>Open source.</strong> MIT licensed on GitHub.</p>
-			</section>
-
-			<section class="wrap more" aria-labelledby="more-title">
-				<h2 id="more-title">Also from Openza</h2>
-				<div class="more-grid">
-					<a href="/reader/">
-						<img src="/reader.svg" alt="" width="32" height="32" />
-						<span><strong>Reader</strong> A focused Markdown reader for Windows.</span>
-					</a>
-					<a href="/flow/">
-						<img src="/flow.svg" alt="" width="32" height="32" />
-						<span><strong>Flow</strong> Agent sessions from Windows and WSL in one place.</span>
-					</a>
-				</div>
+				<p><strong>No telemetry.</strong> <a href="/privacy/">Read the privacy page</a>.</p>
 			</section>
 		</main>
 
 		<footer class="wrap foot">
-			<p>Openza · Independent, open-source software by Deependra Solanky</p>
+			<p>Openza · Open-source apps by Deependra Solanky</p>
 			<nav aria-label="Footer">
-				<a href="/tasks/">Tasks guide</a>
-				<a href="/personal-cloud/">Personal Cloud</a>
+				<a href="#apps">Apps</a>
 				<a href="/privacy/">Privacy</a>
 				<a href="https://github.com/openza">GitHub</a>
 			</nav>

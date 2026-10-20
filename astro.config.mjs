@@ -20,8 +20,10 @@ export default defineConfig({
 			lastUpdated: false,
 			pagination: true,
 			sidebar: [
+				{ label: 'Privacy and security', slug: 'privacy' },
 				{
 					label: 'Openza Tasks',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'tasks' },
 						{ label: 'Install', slug: 'tasks/install' },
@@ -33,14 +35,7 @@ export default defineConfig({
 						{ label: 'Backup and recovery', slug: 'tasks/backup' },
 						{ label: 'Markdown import and export', slug: 'tasks/markdown' },
 						{ label: 'Command line', slug: 'tasks/command-line' },
-					],
-				},
-				{
-					label: 'Personal Cloud',
-					badge: { text: 'Preview', variant: 'note' },
-					items: [
-						{ label: 'Overview', slug: 'personal-cloud' },
-						{ label: 'Privacy and security', slug: 'privacy' },
+						{ label: 'Personal Cloud', slug: 'personal-cloud', badge: { text: 'Preview', variant: 'note' } },
 					],
 				},
 				{
