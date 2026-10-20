@@ -50,6 +50,6 @@ The `cf` CLI is not used here: it detects Astro and expects the Astro Cloudflare
 
 The custom domain is `openza.org`. Cloudflare manages its DNS and certificate. Preserve the existing OAuth publisher-verification TXT record.
 
-## Branding
+## Licensing and branding
 
-Openza names and logos are copyright Deependra Solanky and are not granted under the source-code license. The Openza logo is `/openza.svg`, with `/tasks.svg`, `/reader.svg`, `/flow.svg`, and `/wordmark.svg`.
+The website source code is MIT licensed. Guide text, Openza names, and logos are not; see [CONTENT_LICENSE.md](./CONTENT_LICENSE.md). The Openza logo is `/openza.svg`, with `/tasks.svg`, `/reader.svg`, `/flow.svg`, and `/wordmark.svg`.
