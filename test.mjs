@@ -88,3 +88,12 @@ test('security headers are strict', async () => {
 	assert.doesNotMatch(headers, /'unsafe-inline'|'unsafe-eval'|https?:\/\//);
 	for (const line of headers.split('\n')) assert.ok(line.length <= 2000, 'header line too long');
 });
+
+test('old Tasks guide URLs redirect to existing pages', async () => {
+	const redirects = await readFile(dist + '_redirects', 'utf8');
+	for (const line of redirects.split('\n').filter((l) => l && !l.startsWith('#'))) {
+		const [, target, status] = line.split(/\s+/);
+		assert.equal(status, '301');
+		assert.ok((await stat(dist + target.slice(1) + 'index.html')).isFile(), `Redirect target missing: ${target}`);
+	}
+});
