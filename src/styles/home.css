@@ -2,7 +2,7 @@
 	color-scheme: light dark;
 	--ink: oklch(25% 0.03 260);
 	--muted: oklch(48% 0.02 258);
-	--faint: oklch(62% 0.015 256);
+	--faint: oklch(54% 0.016 256);
 	--line: oklch(91% 0.008 120);
 	--paper: oklch(98.6% 0.004 120);
 	--card: oklch(100% 0 0);
