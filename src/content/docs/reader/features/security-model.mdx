@@ -1,0 +1,26 @@
+---
+title: Safe Reading
+description: How Openza Reader handles links, images, and unfamiliar Markdown files
+---
+
+Reader is designed to open Markdown files without letting document content control the app or change your files.
+
+## HTML and scripts
+
+Reader does not run HTML or scripts included in a Markdown file. HTML-like content appears as text.
+
+## Links
+
+- Links to websites and email addresses open in your usual Windows app.
+- Links that try to run scripts or open unsupported locations are blocked.
+- Links to headings stay inside the current document.
+
+## Images
+
+- Images stored beside the Markdown file can appear in the document.
+- Images from the web can reveal that you opened a document to the image host.
+- Use the remote-image setting to allow or block images from the web.
+
+## Your files
+
+Reader is read-only. Opening, searching, zooming, or changing the reader theme does not modify the Markdown file.

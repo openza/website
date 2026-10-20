@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://openza.org/sitemap.xml
+Sitemap: https://openza.org/sitemap-index.xml

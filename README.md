@@ -1,39 +1,55 @@
-# Openza public website
+# Openza website
 
-Static public product site for `https://openza.org/`, separate from Personal Cloud runtime code and user task deployments. No D1 bindings, credentials, task data, scripts, analytics, or account registration.
+Source for [openza.org](https://openza.org/): the Openza Tasks product site, user guides for Tasks, Reader, and Flow, and the Personal Cloud and privacy pages.
 
-This website is maintained independently in `https://github.com/openza/website`. Personal Cloud runtime code and deployment artifacts belong in their separate repository.
+It is a static [Astro](https://astro.build/) site with one [Starlight](https://starlight.astro.build/) documentation instance, deployed as an assets-only Cloudflare Worker with Wrangler. No D1 bindings, credentials, task data, analytics, or account registration.
+
+## Structure
+
+- `src/pages/index.astro` and `src/styles/home.css` — home page (no inline JavaScript)
+- `src/content/docs/tasks/` — Openza Tasks guide
+- `src/content/docs/personal-cloud.mdx`, `privacy.mdx` — Personal Cloud and privacy
+- `src/content/docs/reader/`, `flow/` — Reader and Flow guides
+- `src/styles/theme.css` — Starlight theme
+- `integrations/security-headers.mjs` — writes `dist/_headers` with a hash-based Content-Security-Policy after each build
+- `wrangler.jsonc` — assets-only Worker and the `openza.org` custom domain
+- `public/` — logos, `robots.txt`
 
 ## Build and check
 
-Requires Node.js 22.18+ for the Cloudflare CLI configuration.
+Requires Node.js 22.18 or newer.
 
 ```sh
-git clone https://github.com/openza/website.git
-cd website
 npm ci
+npm run dev       # http://127.0.0.1:4321
 npm run build
 npm test
-npm run preview
+npm run preview   # http://127.0.0.1:8799
 ```
 
-Preview binds only to `127.0.0.1:8799`. `dist/` and Cloudflare build/cache output are ignored. Source is `build.mjs` and `public/`; generated output must not be committed.
+`dist/` and Cloudflare build output are ignored. Generated output must not be committed.
 
-Deployment uses a separate assets-only Worker named `openza-website` through the official Cloudflare CLI. Review the configuration and authenticated account before deploying. Do not run the website deployment command from the parent Personal Cloud runtime directory.
+The build allows only first-party scripts and styles. Inline scripts and style attributes that Starlight emits are allowed by SHA-256 hash, computed after each build. The build fails if the policy no longer fits Cloudflare's 2,000-character `_headers` line limit.
+
+## Writing guides
+
+Guides describe the released app. Check behavior against the [Tasks source](https://github.com/openza/tasks) before documenting it, and label anything that is only on the Snap edge channel as a preview. Personal Cloud must stay labeled as a preview until it is explicitly released.
+
+## Deploy
+
+Deployment uploads `dist/` to the assets-only Worker `openza-website` with Wrangler. There is no Worker code and no bindings. Review the configuration and the authenticated account first.
 
 ```sh
 npm run build
 npm test
-npx cf deploy --dry-run
-npm run deploy -- --profile YOUR_AUTH_PROFILE
+npx wrangler deploy --dry-run
+npm run deploy
 ```
 
-The deploy script regenerates and checks the assets before deployment. Configure your own CLI authentication profile; no account credentials are included in source. The custom domain is `openza.org`. Cloudflare manages the domain's DNS and certificate when deploying its trigger. Preserve its existing OAuth publisher-verification TXT record. No user cloud resources are targeted.
+The `cf` CLI is not used here: it detects Astro and expects the Astro Cloudflare adapter, which builds a server Worker this static site does not need.
 
-The public site must label Personal Cloud as preview and public OAuth onboarding as unavailable until explicitly approved and verified. Website publication does not promote OAuth or publish a production app release.
+The custom domain is `openza.org`. Cloudflare manages its DNS and certificate. Preserve the existing OAuth publisher-verification TXT record.
 
 ## Branding
 
-Reuses the owner's existing circle badge from `solanky.dev/openza`, with the lightning mark reserved for Tasks. The square Openza logo is at `/openza.svg`, Tasks logo at `/tasks.svg`, and wordmark at `/wordmark.svg`.
-
-Source code follows the repository license. Openza names and logos are copyright Deependra Solanky; they are not granted under the source-code license. Reuse here is authorized by the brand owner.
+Openza names and logos are copyright Deependra Solanky and are not granted under the source-code license. The Openza logo is `/openza.svg`, with `/tasks.svg`, `/reader.svg`, `/flow.svg`, and `/wordmark.svg`.

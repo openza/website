@@ -1,0 +1,46 @@
+---
+title: GitHub Sign-in
+description: Connect Openza Flow to your GitHub account
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+GitHub sign-in is optional. Flow needs permission to read the pull requests, releases, and workflow runs that your GitHub account can see only when you use GitHub Activity. Home, Agent Sessions, and Settings remain available without an account.
+
+## Sign in with GitHub
+
+This is the recommended method.
+
+<Steps>
+1. Open Openza Flow and select **Sign in with GitHub**.
+2. Open the GitHub activation page when prompted.
+3. Enter the code shown in Flow.
+4. Approve access on GitHub, then return to Flow.
+</Steps>
+
+Windows protects the saved sign-in information on this PC. Openza does not receive or store it on an Openza server.
+
+## Use a personal access token
+
+A personal access token is a private code created in GitHub. Use this option only when the normal GitHub sign-in is not suitable for your account or organization.
+
+<Steps>
+1. Select **Use personal access token** in Flow.
+2. Create a token in GitHub settings.
+3. Give it access to the repositories and organizations you want Flow to show.
+4. Paste the token into Flow and connect.
+</Steps>
+
+For a classic GitHub token, select `repo` or `public_repo`, plus `read:user` and `read:org`. These are GitHub's permission names.
+
+<Aside type="caution">
+Treat a personal access token like a password. Do not share it or include it in source code, screenshots, or messages.
+</Aside>
+
+## What Flow can see
+
+Flow can show only information available to the signed-in GitHub account. For example, a draft release appears only if that account can view it.
+
+## Sign out
+
+Open the GitHub account menu in Flow and select **Sign out of GitHub**. Flow removes the saved token and username from this PC, clears its GitHub cache, and keeps local features available.

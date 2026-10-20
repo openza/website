@@ -1,0 +1,128 @@
+/* Starlight theme for openza.org: slate ink, warm paper, quiet green accent. */
+
+:root {
+	--sl-font: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--sl-font-mono: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+	--sl-content-width: 46rem;
+
+	/* Dark */
+	--sl-color-accent-low: oklch(27% 0.04 160);
+	--sl-color-accent: oklch(72% 0.09 160);
+	--sl-color-accent-high: oklch(90% 0.05 160);
+	--sl-color-white: oklch(96% 0.004 250);
+	--sl-color-gray-1: oklch(88% 0.008 250);
+	--sl-color-gray-2: oklch(76% 0.012 250);
+	--sl-color-gray-3: oklch(63% 0.014 250);
+	--sl-color-gray-4: oklch(48% 0.016 255);
+	--sl-color-gray-5: oklch(34% 0.018 255);
+	--sl-color-gray-6: oklch(24% 0.018 255);
+	--sl-color-black: oklch(17% 0.015 255);
+	--sl-color-bg: oklch(17% 0.015 255);
+	--sl-color-bg-nav: oklch(17% 0.015 255);
+	--sl-color-bg-sidebar: oklch(17% 0.015 255);
+	--sl-color-hairline-light: oklch(27% 0.018 255);
+	--sl-color-hairline: oklch(27% 0.018 255);
+	--sl-shadow-sm: none;
+	--sl-shadow-md: none;
+	--sl-shadow-lg: none;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: oklch(94% 0.03 160);
+	--sl-color-accent: oklch(44% 0.07 160);
+	--sl-color-accent-high: oklch(32% 0.06 160);
+	--sl-color-white: oklch(25% 0.03 260);
+	--sl-color-gray-1: oklch(31% 0.028 260);
+	--sl-color-gray-2: oklch(42% 0.024 258);
+	--sl-color-gray-3: oklch(52% 0.02 256);
+	--sl-color-gray-4: oklch(64% 0.016 256);
+	--sl-color-gray-5: oklch(80% 0.01 120);
+	--sl-color-gray-6: oklch(92% 0.008 120);
+	--sl-color-gray-7: oklch(96.5% 0.005 120);
+	--sl-color-black: oklch(98.6% 0.004 120);
+	--sl-color-bg: oklch(98.6% 0.004 120);
+	--sl-color-bg-nav: oklch(98.6% 0.004 120);
+	--sl-color-bg-sidebar: oklch(98.6% 0.004 120);
+	--sl-color-hairline-light: oklch(91% 0.008 120);
+	--sl-color-hairline: oklch(91% 0.008 120);
+}
+
+body {
+	text-rendering: optimizeLegibility;
+	font-feature-settings: 'cv11', 'ss01';
+}
+
+h1,
+h2,
+h3,
+h4 {
+	letter-spacing: -0.022em;
+	text-wrap: balance;
+}
+
+.sl-markdown-content p,
+.sl-markdown-content li {
+	text-wrap: pretty;
+}
+
+header.header {
+	box-shadow: none;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.site-title {
+	color: var(--sl-color-white) !important;
+	font-weight: 650;
+	letter-spacing: -0.03em;
+}
+
+.site-search button {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 8px;
+	background: transparent;
+	box-shadow: none;
+}
+
+.sl-link-button {
+	border-radius: 8px;
+	font-weight: 600;
+	box-shadow: none;
+}
+
+.sl-markdown-content table {
+	font-size: var(--sl-text-sm);
+}
+
+.sl-markdown-content kbd {
+	font-family: var(--sl-font-mono);
+	font-size: 0.8em;
+	padding: 0.1em 0.45em;
+	border: 1px solid var(--sl-color-hairline);
+	border-bottom-width: 2px;
+	border-radius: 5px;
+	background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+}
+
+.card,
+.sl-link-card {
+	border-radius: 12px;
+	box-shadow: none;
+}
+
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-accent-high);
+	font-weight: 600;
+}
+
+.sl-badge {
+	font-family: var(--sl-font);
+	font-weight: 600;
+	border-radius: 999px;
+	padding-inline: 0.5em;
+	background: var(--sl-color-accent-low);
+	border-color: transparent;
+	color: var(--sl-color-accent-high);
+}

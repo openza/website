@@ -1,0 +1,34 @@
+---
+title: Notifications
+description: Choose when Openza Flow shows Windows notifications
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Flow can show a Windows notification when a new review request appears.
+
+## How notifications work
+
+- Notifications are off until you enable them.
+- Existing review requests do not trigger notifications on the first refresh.
+- Later refreshes notify you only about newly found review requests.
+- Selecting a notification can open Flow and the related pull request when supported.
+
+## Run in background
+
+By default, closing the window exits Flow. If you enable **Run in background**, closing the window hides Flow in the system tray and lets it continue checking for review requests.
+
+The tray menu lets you open Flow, refresh, pause or resume notifications, and exit.
+
+<Aside type="note">
+**Run in background** and **Start with Windows** are separate settings. Enable only the behavior you want.
+</Aside>
+
+## Notifications do not appear
+
+Check:
+
+1. Notifications are enabled in Flow.
+2. Windows allows notifications from Flow.
+3. Do Not Disturb or Focus Assist is not hiding them.
+4. Flow is open or **Run in background** is enabled.

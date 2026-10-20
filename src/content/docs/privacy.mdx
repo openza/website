@@ -1,0 +1,52 @@
+---
+title: Privacy and security
+description: How this website, the Openza apps, and Personal Cloud handle your data, credentials, passkeys, backups, and browser cache.
+lastUpdated: 2026-10-20
+---
+
+Openza apps are local-first. They do not collect telemetry or analytics, and Openza does not run a server that holds your tasks.
+
+## Openza apps
+
+Each app's privacy policy lives in its source repository:
+
+- [Openza Tasks privacy policy](https://github.com/openza/tasks/blob/main/PRIVACY.md)
+- [Openza Reader privacy policy](https://github.com/openza/reader/blob/main/PRIVACY.md)
+- [Openza Flow privacy policy](https://github.com/openza/flow/blob/main/PRIVACY.md), also summarized in the [Flow guide](/flow/privacy/)
+
+## This website
+
+openza.org is a static product and documentation website. It has no account registration, task database, analytics scripts, advertising, or tracking pixels. Pages load their styles, fonts, scripts, and images from this site only. Search runs in your browser.
+
+Cloudflare delivers the site and may process connection information and keep platform logs under its own policies. Links to GitHub, app stores, and Cloudflare documentation take you to separate sites with their own policies.
+
+## Your Personal Cloud
+
+Personal Cloud is an optional private task copy in your own Cloudflare account. Private access does not mean end-to-end encryption.
+
+Task titles, notes, Spaces, projects, labels, planning, completion, and safe provider-source descriptors synchronize to your Cloudflare resources. Descriptors may include provider URLs and descriptions; they are private task data too.
+
+Cloudflare processes and stores this task content. Administrators of your Cloudflare account can access its resources. Openza does not operate a central task-hosting service, and this design does **not** provide end-to-end encryption.
+
+## Credentials and access
+
+Todoist, Microsoft, and other provider credentials stay on the desktop. A paired desktop performs provider operations. Temporary Cloudflare setup or management authorization is discarded when the operation completes or fails.
+
+Passkeys are managed by your browser or operating system's credential provider. Web owner sessions use an HttpOnly cookie; paired desktop refresh credentials are stored in the operating system's credential store. The server stores hashed credential verifiers.
+
+## Recovery and lost devices
+
+- Save recovery codes privately. They can replace owner access; never put them in issues, screenshots, or public pages.
+- Revoke lost desktop access from your Personal Cloud's Web Settings.
+- Keep SQL backups private. They contain task data and security-related records. Verify a backup before relying on it for recovery.
+- Signing out does not erase the browser's cached task copy. Clear site data when leaving a shared browser.
+
+## Before an update or removal
+
+Download and verify a complete backup first. Disconnecting a desktop is not cloud deletion. Removing the cloud deletes its Worker deployment and D1 database; local desktop tasks remain. Worker rollback alone does not undo database migrations.
+
+## Security reporting
+
+For a suspected vulnerability, [contact the maintainer privately on LinkedIn](https://www.linkedin.com/in/solanky/) before sharing sensitive details. If you cannot establish a private channel, do not publish sensitive details. Never publish tokens, recovery codes, private tasks, or exploit credentials in an issue.
+
+Personal Cloud is a preview with no guaranteed response time or security SLA. See the [Personal Cloud guide](/personal-cloud/) for setup, pairing, and lifecycle precautions. The [Personal Cloud](https://github.com/openza/personal-cloud) and [Tasks](https://github.com/openza/tasks) source repositories are public and available for inspection.
