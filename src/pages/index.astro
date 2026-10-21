@@ -1,0 +1,43 @@
+---
+import Site from '../layouts/Site.astro';
+import Downloads from '../components/Downloads.astro';
+import { apps } from '../data/apps';
+---
+
+<Site
+	title="Openza: local-first, open-source desktop apps"
+	description="Openza makes local-first, open-source desktop apps: Openza Tasks for Linux and Windows, and Openza Reader and Openza Flow for Windows."
+>
+	<section class="wrap hero">
+		<h1>Local-first, open-source desktop apps.</h1>
+		<p class="lede">
+			Each app keeps your data on your own computer unless you choose to connect a service. All of them are MIT licensed
+			and send no telemetry.
+		</p>
+	</section>
+
+	<section class="wrap apps" id="apps" aria-labelledby="apps-title">
+		<h2 id="apps-title" class="section-label">Apps</h2>
+		<ul class="app-grid">
+			{
+				apps.map((app) => (
+					<li class="app-card">
+						<div class="app-head">
+							<img src={app.icon} alt="" width="40" height="40" />
+							<h3>
+								<a href={`/${app.id}/`}>{app.name}</a>
+							</h3>
+						</div>
+						<p class="tagline">{app.tagline}</p>
+						<Downloads downloads={app.downloads} />
+						<p class="links">
+							<a href={`/${app.id}/`}>Features</a>
+							<a href={`/docs/${app.id}/`}>Docs</a>
+							<a href={app.source}>Source</a>
+						</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Site>

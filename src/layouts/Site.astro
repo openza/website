@@ -1,0 +1,67 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/home.css';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={url} />
+		<link rel="icon" href="/openza.svg" type="image/svg+xml" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="color-scheme" content="light dark" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={url} />
+	</head>
+	<body>
+		<a class="skip" href="#main">Skip to content</a>
+		<header class="top">
+			<div class="wrap nav">
+				<a class="brand" href="/" aria-label="Openza home">
+					<img src="/openza.svg" alt="" width="28" height="28" />
+					<span>Openza</span>
+				</a>
+				<nav aria-label="Main">
+					<a href="/#apps">Apps</a>
+					<a href="/docs/">Docs</a>
+					<a href="/privacy/">Privacy</a>
+					<a href="https://github.com/openza">GitHub</a>
+				</nav>
+			</div>
+		</header>
+
+		<main id="main">
+			<slot />
+
+			<section class="wrap promise" aria-label="What every Openza app has in common">
+				<p><strong>Local-first.</strong> Your data lives on your computer.</p>
+				<p><strong>Open source.</strong> MIT licensed on GitHub.</p>
+				<p><strong>No telemetry.</strong> <a href="/privacy/">Read the privacy page</a>.</p>
+			</section>
+		</main>
+
+		<footer class="wrap foot">
+			<p>Openza · Open-source apps by Deependra Solanky</p>
+			<nav aria-label="Footer">
+				<a href="/#apps">Apps</a>
+				<a href="/docs/">Docs</a>
+				<a href="/privacy/">Privacy</a>
+				<a href="https://github.com/openza">GitHub</a>
+			</nav>
+		</footer>
+	</body>
+</html>

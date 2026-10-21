@@ -2,14 +2,23 @@
   "name": "openza-website",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
-    "build": "node build.mjs",
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 8799",
     "test": "node --test test.mjs",
-    "preview": "node preview.mjs",
-    "deploy": "npm run build && npm test && cf deploy"
+    "deploy": "npm run build && npm test && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@astrojs/starlight": "0.42.6",
+    "@fontsource-variable/inter": "5.3.0",
+    "astro": "7.4.1"
   },
   "devDependencies": {
-    "cf": "1.0.0-beta.14",
     "wrangler": "4.149.0"
   }
 }
