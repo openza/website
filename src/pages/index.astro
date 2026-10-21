@@ -1,97 +1,43 @@
 ---
-import '@fontsource-variable/inter';
-import '../styles/home.css';
+import Site from '../layouts/Site.astro';
+import Downloads from '../components/Downloads.astro';
 import { apps } from '../data/apps';
-
-const title = 'Openza: local-first, open-source desktop apps';
-const description =
-	'Openza makes local-first, open-source desktop apps: Openza Tasks for Linux and Windows, and Openza Reader and Openza Flow for Windows.';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<link rel="canonical" href={new URL('/', Astro.site)} />
-		<link rel="icon" href="/openza.svg" type="image/svg+xml" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<meta name="color-scheme" content="light dark" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={new URL('/', Astro.site)} />
-	</head>
-	<body>
-		<a class="skip" href="#main">Skip to content</a>
-		<header class="top">
-			<div class="wrap nav">
-				<a class="brand" href="/" aria-label="Openza home">
-					<img src="/openza.svg" alt="" width="28" height="28" />
-					<span>Openza</span>
-				</a>
-				<nav aria-label="Main">
-					<a href="#apps">Apps</a>
-					<a href="/privacy/">Privacy</a>
-					<a href="https://github.com/openza">GitHub</a>
-				</nav>
-			</div>
-		</header>
+<Site
+	title="Openza: local-first, open-source desktop apps"
+	description="Openza makes local-first, open-source desktop apps: Openza Tasks for Linux and Windows, and Openza Reader and Openza Flow for Windows."
+>
+	<section class="wrap hero">
+		<h1>Local-first, open-source desktop apps.</h1>
+		<p class="lede">
+			Each app keeps your data on your own computer unless you choose to connect a service. All of them are MIT licensed
+			and send no telemetry.
+		</p>
+	</section>
 
-		<main id="main">
-			<section class="wrap hero">
-				<h1>Local-first, open-source desktop apps.</h1>
-				<p class="lede">
-					Each app keeps your data on your own computer unless you choose to connect a service. All of them are MIT
-					licensed and send no telemetry.
-				</p>
-			</section>
-
-			<section class="wrap apps" id="apps" aria-labelledby="apps-title">
-				<h2 id="apps-title" class="section-label">Apps</h2>
-				<ul class="app-grid">
-					{
-						apps.map((app) => (
-							<li class="app-card">
-								<div class="app-head">
-									<img src={app.icon} alt="" width="40" height="40" />
-									<h3>{app.name}</h3>
-								</div>
-								<p class="tagline">{app.tagline}</p>
-								<div class="downloads">
-									{app.downloads.map((download) => (
-										<a class="download" href={download.href}>
-											<span class="platform">{download.platform}</span>
-											<span class="store">{download.store}</span>
-										</a>
-									))}
-								</div>
-								<p class="links">
-									<a href={app.guide}>Guide</a>
-									<a href={app.source}>Source</a>
-								</p>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-
-			<section class="wrap promise" aria-label="What every Openza app has in common">
-				<p><strong>Local-first.</strong> Your data lives on your computer.</p>
-				<p><strong>Open source.</strong> MIT licensed on GitHub.</p>
-				<p><strong>No telemetry.</strong> <a href="/privacy/">Read the privacy page</a>.</p>
-			</section>
-		</main>
-
-		<footer class="wrap foot">
-			<p>Openza · Open-source apps by Deependra Solanky</p>
-			<nav aria-label="Footer">
-				<a href="#apps">Apps</a>
-				<a href="/privacy/">Privacy</a>
-				<a href="https://github.com/openza">GitHub</a>
-			</nav>
-		</footer>
-	</body>
-</html>
+	<section class="wrap apps" id="apps" aria-labelledby="apps-title">
+		<h2 id="apps-title" class="section-label">Apps</h2>
+		<ul class="app-grid">
+			{
+				apps.map((app) => (
+					<li class="app-card">
+						<div class="app-head">
+							<img src={app.icon} alt="" width="40" height="40" />
+							<h3>
+								<a href={`/${app.id}/`}>{app.name}</a>
+							</h3>
+						</div>
+						<p class="tagline">{app.tagline}</p>
+						<Downloads downloads={app.downloads} />
+						<p class="links">
+							<a href={`/${app.id}/`}>Features</a>
+							<a href={`/docs/${app.id}/`}>Docs</a>
+							<a href={app.source}>Source</a>
+						</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Site>

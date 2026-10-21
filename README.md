@@ -6,10 +6,11 @@ It is a static [Astro](https://astro.build/) site with one [Starlight](https://s
 
 ## Structure
 
-- `src/pages/index.astro` and `src/styles/home.css` — home page (no inline JavaScript)
-- `src/content/docs/tasks/` — Openza Tasks guide
-- `src/content/docs/personal-cloud.mdx`, `privacy.mdx` — Personal Cloud and privacy
-- `src/content/docs/reader/`, `flow/` — Reader and Flow guides
+- `src/data/apps.ts` — the app list; each entry appears on the home page and builds a product page at `/<app>/`
+- `src/pages/index.astro`, `src/pages/[app]/index.astro`, `src/layouts/Site.astro` and `src/styles/home.css` — home and product pages (no inline JavaScript)
+- `src/content/docs/docs/tasks/`, `reader/`, `flow/` — guides served under `/docs/<app>/`; Personal Cloud is part of the Tasks guide
+- `src/content/docs/privacy.mdx` — privacy and security
+- `public/_redirects` — old guide URLs, including ones shipped in the apps, redirected to their current pages
 - `src/styles/theme.css` — Starlight theme
 - `integrations/security-headers.mjs` — writes `dist/_headers` with a hash-based Content-Security-Policy after each build
 - `wrangler.jsonc` — assets-only Worker and the `openza.org` custom domain

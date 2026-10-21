@@ -25,13 +25,17 @@ test('expected pages are built', async () => {
 		'index.html',
 		'404.html',
 		'tasks/index.html',
-		'tasks/install/index.html',
-		'personal-cloud/index.html',
-		'privacy/index.html',
 		'reader/index.html',
 		'flow/index.html',
-		'flow/privacy/index.html',
-		'flow/support/index.html',
+		'docs/index.html',
+		'docs/tasks/index.html',
+		'docs/tasks/install/index.html',
+		'docs/tasks/personal-cloud/index.html',
+		'docs/reader/index.html',
+		'docs/flow/index.html',
+		'docs/flow/privacy/index.html',
+		'docs/flow/support/index.html',
+		'privacy/index.html',
 	]) {
 		assert.ok((await stat(dist + path)).isFile(), `Missing ${path}`);
 	}
@@ -65,13 +69,34 @@ for (const file of pages) {
 	});
 }
 
-test('home page has no inline JavaScript', async () => {
-	const html = await readFile(dist + 'index.html', 'utf8');
-	assert.doesNotMatch(html, /<script(?![^>]*\bsrc="\/)/i);
+test('home and product pages have no inline JavaScript', async () => {
+	for (const path of ['index.html', 'tasks/index.html', 'reader/index.html', 'flow/index.html']) {
+		const html = await readFile(dist + path, 'utf8');
+		assert.doesNotMatch(html, /<script(?![^>]*\bsrc="\/)/i, path);
+	}
+});
+
+test('product pages show platform downloads and link features to their guides', async () => {
+	const tasks = await readFile(dist + 'tasks/index.html', 'utf8');
+	assert.match(tasks, /class="platform">Linux</);
+	assert.match(tasks, /class="platform">Windows</);
+	assert.match(tasks, /href="\/docs\/tasks\/personal-cloud\/"[\s\S]*?Preview/);
+	for (const app of ['reader', 'flow']) {
+		const html = await readFile(dist + app + '/index.html', 'utf8');
+		assert.match(html, /class="platform">Windows</);
+		assert.match(html, new RegExp(`href="/docs/${app}/`));
+	}
+});
+
+test('links shipped in the apps still resolve', async () => {
+	const redirects = await readFile(dist + '_redirects', 'utf8');
+	for (const path of ['/flow/privacy/', '/flow/support/', '/personal-cloud/']) {
+		assert.match(redirects, new RegExp(`^${path} /docs/`, 'm'), path);
+	}
 });
 
 test('privacy and onboarding limitations remain explicit', async () => {
-	const cloud = await readFile(dist + 'personal-cloud/index.html', 'utf8');
+	const cloud = await readFile(dist + 'docs/tasks/personal-cloud/index.html', 'utf8');
 	const privacy = await readFile(dist + 'privacy/index.html', 'utf8');
 	assert.match(cloud, /Personal Cloud is still a preview/);
 	assert.match(cloud, /OAuth client is public/);
@@ -89,7 +114,7 @@ test('security headers are strict', async () => {
 	for (const line of headers.split('\n')) assert.ok(line.length <= 2000, 'header line too long');
 });
 
-test('old Tasks guide URLs redirect to existing pages', async () => {
+test('old guide URLs redirect to existing pages', async () => {
 	const redirects = await readFile(dist + '_redirects', 'utf8');
 	for (const line of redirects.split('\n').filter((l) => l && !l.startsWith('#'))) {
 		const [, target, status] = line.split(/\s+/);

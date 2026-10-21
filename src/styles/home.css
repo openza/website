@@ -275,6 +275,99 @@ h1 {
 	text-decoration: underline;
 }
 
+/* Product pages */
+
+.product-icon {
+	margin-bottom: 24px;
+}
+
+.product-get {
+	display: grid;
+	gap: 16px;
+	max-width: 26rem;
+	margin-top: 32px;
+}
+
+.product-get .links {
+	padding-top: 0;
+}
+
+.app-head h3 a {
+	text-decoration: none;
+}
+
+.app-head h3 a:hover {
+	text-decoration: underline;
+}
+
+.feature-grid {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+	gap: 16px;
+}
+
+.feature-grid li {
+	display: flex;
+}
+
+.feature {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+	padding: 24px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--card);
+	text-decoration: none;
+	transition: border-color 0.15s;
+}
+
+.feature:hover {
+	border-color: var(--faint);
+}
+
+.feature h3 {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	font-size: 17px;
+	font-weight: 620;
+	letter-spacing: -0.015em;
+}
+
+.feature p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 15px;
+}
+
+.more {
+	margin-top: auto;
+	padding-top: 4px;
+	color: var(--accent);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.more::after {
+	content: ' →';
+}
+
+.badge {
+	padding: 2px 8px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	color: var(--muted);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0;
+}
+
 /* Principles */
 
 .promise {
@@ -366,7 +459,8 @@ h1 {
 		scroll-behavior: auto;
 	}
 
-	.download {
+	.download,
+	.feature {
 		transition: none;
 	}
 }

@@ -1,0 +1,56 @@
+---
+title: Install
+description: Install Openza Tasks on Linux, and where to find it on Windows.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+## Linux
+
+Openza Tasks is published as a strictly confined Snap on the [Snap Store](https://snapcraft.io/openza-tasks).
+
+<Tabs>
+	<TabItem label="Stable">
+		```bash
+		sudo snap install openza-tasks
+		```
+		The stable channel has version 1.1.0.
+	</TabItem>
+	<TabItem label="Edge (preview)">
+		```bash
+		sudo snap install openza-tasks --edge
+		```
+		Version 1.2.0 is tested on the edge channel first. It adds the [Personal Cloud preview](/docs/tasks/personal-cloud/).
+	</TabItem>
+</Tabs>
+
+Open **Openza Tasks** from your applications menu. You can start adding tasks right away; no account is needed.
+
+Snaps update automatically. Your tasks, settings, and restore points are kept in the Snap's shared data folder, so they stay in place across updates.
+
+<Aside type="note" title="Signing in to connected apps">
+Openza Tasks keeps tokens and passphrases in your desktop's keyring through the Secret Service. Make sure your desktop session has a keyring available before you connect Todoist, Microsoft To Do, GitHub, or OneDrive.
+</Aside>
+
+### Installing from a downloaded file
+
+The [GitHub v1.1.0 release](https://github.com/openza/tasks/releases/tag/v1.1.0) includes a `.snap` file and its checksum as a fallback. Verify it before installing:
+
+```bash
+sha256sum --check openza-tasks_1.1.0_amd64.snap.sha256
+sudo snap install ./openza-tasks_1.1.0_amd64.snap --dangerous
+```
+
+`--dangerous` is needed because the file is installed without a Snap Store signature. A locally installed Snap does not receive Store updates, so prefer the Snap Store when you can.
+
+## Windows
+
+Openza Tasks is available from the [Microsoft Store](https://apps.microsoft.com/detail/9NQGDKXGRGF8). An updated Windows version built on the same app as Linux is in progress.
+
+## macOS
+
+macOS support is planned.
+
+## Build from source
+
+Developers can build and run Openza Tasks from the [source repository](https://github.com/openza/tasks).
