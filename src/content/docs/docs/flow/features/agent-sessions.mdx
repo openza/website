@@ -1,0 +1,51 @@
+---
+title: Agent Sessions
+description: Browse agent sessions from Windows and WSL in one place.
+---
+
+Agent Sessions brings interactive agent history from native Windows and detected WSL distributions into one local view. The current release supports Codex.
+
+## What Flow discovers
+
+When you open a session-backed page, Flow:
+
+1. Looks for a working Codex CLI on the current Windows user's executable path.
+2. Checks installed WSL distributions for a working Codex CLI.
+3. Requests interactive, non-archived session summaries from each enabled environment.
+
+Flow does not install or configure Codex. An unavailable environment does not prevent other environments from loading.
+
+## Find a session
+
+Use search to match a session title, repository or folder, working directory, environment, or source. Filter by environment when you want to focus on Windows or a particular WSL distribution.
+
+You can group the list by:
+
+- **Date** for Today, Yesterday, This week, and Older.
+- **Repository or folder** for work associated with the same location.
+
+Flow initially shows a manageable part of large histories. Use **Show more** to display additional locally loaded results.
+
+## Preview
+
+Selecting a session requests a short preview containing recent user and final assistant messages. Flow omits reasoning, command output, patches, and tool output. Preview availability depends on the installed Codex version.
+
+## Resume in terminal
+
+Flow validates the original working directory before resume:
+
+- A Windows session opens the detected native Codex executable in Windows Terminal.
+- A WSL session opens the original distribution, Linux working directory, and Linux Codex executable.
+
+Flow preserves the owning environment and does not translate a Linux path into a Windows path.
+
+If the directory or Windows Terminal is unavailable, Flow blocks direct resume and keeps the resume command available to copy.
+
+## Environment settings
+
+Open **Settings** to:
+
+- Enable or disable a detected Codex environment.
+- Choose a new tab in the most recent Windows Terminal window or a new Terminal window.
+
+Session history remains owned by Codex. Flow does not archive, delete, or modify sessions.

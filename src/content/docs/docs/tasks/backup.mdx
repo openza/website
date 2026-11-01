@@ -1,0 +1,44 @@
+---
+title: Backup and recovery
+description: Restore points, backup files, and optional OneDrive backups.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Your tasks live in a local database on your computer. Openza Tasks gives you three layers of protection, all in **Settings > Data and recovery**.
+
+| Layer | What it protects against | Where it lives |
+| --- | --- | --- |
+| **Restore points** | Mistakes, a bad import, an update gone wrong | On this computer, next to the database |
+| **Backup files** | Losing this computer or reinstalling | Wherever you save the file |
+| **OneDrive backup** | Losing this computer, automatically | The app's folder in your OneDrive |
+
+## Restore points
+
+With **Automatic local restore points** on, Openza creates restore points by itself, for example before an import, a restore, or a database upgrade. Select **Create restore point** to make one now.
+
+From the list you can restore, delete, or export a restore point.
+
+<Aside type="caution">
+Restore points are kept with the app's data. Uninstalling the app can remove them, so they are not a full backup.
+</Aside>
+
+## Backup files
+
+Select **Export backup file** to save a copy of your database anywhere you like, such as an external drive. Select **Restore from file** to bring one back.
+
+## OneDrive backup
+
+OneDrive backup is optional and off by default.
+
+1. Under **OneDrive backup**, select **Connect / change account** and sign in. This can be a different Microsoft account from the one you use for Microsoft To Do.
+2. Turn on **Automatic OneDrive backup**, or select **Back up now**.
+3. To restore, select **Refresh backups**, choose a backup, and select **Restore selected cloud backup**.
+
+Turn on **Encrypt backups with a passphrase** to encrypt snapshots before they are uploaded. Keep the passphrase safe: an encrypted backup can only be restored with the passphrase used when it was created. Changing the passphrase affects future backups only.
+
+## Restoring is safe
+
+Every restore first creates a safety restore point, so you can go back if you picked the wrong backup. Restoring the database does not restore sign-ins to connected apps.
+
+To see the files, select **Open data folder**.

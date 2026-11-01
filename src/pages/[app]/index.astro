@@ -1,0 +1,57 @@
+---
+import { getEntry } from 'astro:content';
+import Site from '../../layouts/Site.astro';
+import Downloads from '../../components/Downloads.astro';
+import { apps, docsHref, type App } from '../../data/apps';
+
+export function getStaticPaths() {
+	return apps.map((app) => ({ params: { app: app.id }, props: { app } }));
+}
+
+const { app } = Astro.props as { app: App };
+
+const features = await Promise.all(
+	app.features.map(async (feature) => {
+		const entry = await getEntry('docs', feature.doc);
+		if (!entry) throw new Error(`${app.name}: missing guide page ${feature.doc}`);
+		return { ...feature, title: entry.data.title, description: entry.data.description };
+	}),
+);
+const platforms = app.downloads.map((download) => download.platform).join(' and ');
+---
+
+<Site title={`${app.name}: ${app.tagline}`} description={`${app.tagline} Available for ${platforms}.`}>
+	<section class="wrap hero product-hero">
+		<img class="product-icon" src={app.icon} alt="" width="64" height="64" />
+		<h1>{app.name}</h1>
+		<p class="lede">{app.tagline}</p>
+		<div class="product-get">
+			<Downloads downloads={app.downloads} />
+			<p class="links">
+				<a href={docsHref(app.install)}>Install help</a>
+				<a href={`/docs/${app.id}/`}>Docs</a>
+				<a href={app.source}>Source</a>
+			</p>
+		</div>
+	</section>
+
+	<section class="wrap apps" aria-labelledby="features-title">
+		<h2 id="features-title" class="section-label">Features</h2>
+		<ul class="feature-grid">
+			{
+				features.map((feature) => (
+					<li>
+						<a class="feature" href={docsHref(feature.doc)}>
+							<h3>
+								{feature.title}
+								{feature.preview && <span class="badge">Preview</span>}
+							</h3>
+							<p>{feature.description}</p>
+							<span class="more">Read the guide</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Site>

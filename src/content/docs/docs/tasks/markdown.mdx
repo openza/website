@@ -1,0 +1,28 @@
+---
+title: Markdown import and export
+description: Import Markdown checklists and export your tasks as Markdown.
+---
+
+Both actions are in the **More actions** menu above the task list.
+
+## Import
+
+Select **Import Markdown** and choose a `.md`, `.markdown`, or `.txt` file. Openza imports every checklist item:
+
+```markdown
+# Weekend
+
+- [ ] Fix the garden gate
+- [ ] Call the plumber
+- [x] Buy paint
+```
+
+`- [ ]` becomes an open task and `- [x]` a completed one. Headings and other text are ignored. Open items land in Inbox in the current Space, ready to sort. Openza creates a restore point before importing. Lines longer than 10,000 characters are skipped.
+
+Import does not check for duplicates, so review the results.
+
+## Export
+
+Select **Export Markdown** and choose where to save. The file lists all tasks in the selected Space, including completed tasks and subtasks, grouped by project, with priority, dates, deadlines, and labels. A summary of totals and a table of labels are included.
+
+Exports never contain account details, tokens, or backup passphrases.

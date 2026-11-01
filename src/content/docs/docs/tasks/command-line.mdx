@@ -1,0 +1,36 @@
+---
+title: Command line
+description: Use the Openza command-line interface on the same tasks as the app.
+---
+
+The Snap includes a command-line interface that works on the same task database as the desktop app.
+
+```bash
+openza-tasks.openza status
+openza-tasks.openza task list
+openza-tasks.openza task add "Prepare release notes" --priority high --label release
+openza-tasks.openza task complete TASK_ID
+```
+
+To type `openza` instead, add an alias:
+
+```bash
+sudo snap alias openza-tasks.openza openza
+```
+
+## Commands
+
+```text
+openza status
+openza search <query>
+openza task list | show | add | update | complete | reopen | delete
+openza space list
+openza project list
+openza label list
+openza sync status
+openza sync run
+```
+
+Every command accepts `--format text`, `--format json`, or `--format tsv`. JSON output is versioned, so scripts can rely on it. Deleting a task requires `--yes`.
+
+The full reference, including exit codes and output formats, is in the [CLI documentation](https://github.com/openza/tasks/blob/main/docs/cli.md).

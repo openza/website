@@ -1,0 +1,20 @@
+---
+import type { Download } from '../data/apps';
+
+interface Props {
+	downloads: Download[];
+}
+
+const { downloads } = Astro.props;
+---
+
+<div class="downloads">
+	{
+		downloads.map((download) => (
+			<a class="download" href={download.href}>
+				<span class="platform">{download.platform}</span>
+				<span class="store">{download.store}</span>
+			</a>
+		))
+	}
+</div>

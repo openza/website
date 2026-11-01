@@ -1,0 +1,53 @@
+---
+title: Personal Cloud
+description: An optional Web copy of your Openza tasks in your own Cloudflare account. Setup, pairing, and preview boundaries.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+Take your Openza tasks to the Web while keeping a local-first desktop. Each person connects their own Cloudflare account, which holds their Web app and task database.
+
+<Aside type="caution" title="Preview">
+**Personal Cloud is still a preview.** It is available in Openza Tasks 1.2.0 on the Snap edge channel. The Cloudflare OAuth client is public, allowing users to authorize setup in their own accounts. These steps explain the intended flow and support existing preview installations; this page is not a sign-up or a production-release announcement.
+</Aside>
+
+## What lives where
+
+| Where | What |
+| --- | --- |
+| **Your desktop** | Your local task database and connected-app credentials. It keeps working offline. |
+| **Your Cloudflare account** | A Worker serves your Web app, and a D1 database stores the synchronized task copy. Task APIs require owner sign-in or a paired desktop. |
+| **Your browser** | You sign in with a passkey and work with your tasks. |
+
+openza.org does not receive or host your tasks.
+
+## Set up
+
+<Steps>
+1. **Start in desktop Settings.** Choose Personal Cloud setup. Review what will be uploaded and the Cloudflare permissions before continuing.
+2. **Authorize your own Cloudflare account.** Openza requests Account Settings: Read, D1: Write, and Workers Scripts: Write to set up the resources. Setup authorization is temporary and discarded afterward.
+3. **Let the desktop prepare your cloud.** It creates the database, deploys the Web app, prepares the schema, verifies the connection, and pairs this desktop.
+4. **Finish security in your browser.** Create the owner passkey and save the recovery code privately. Use the generated Personal Cloud address to open your tasks, not openza.org.
+</Steps>
+
+## Already have a Personal Cloud?
+
+Open its Web Settings and choose **Pair a desktop**. Then, in desktop setup, choose **Pair existing cloud** and enter that cloud's address and its newly generated one-time code. Codes belong to the cloud that generated them; localhost and a deployed cloud are separate.
+
+## Everyday use
+
+Desktop sync makes your Openza tasks across Spaces available to your cloud. Add, edit, organize, and complete tasks on the Web, then sync changes back to the desktop. Operations involving Todoist or Microsoft To Do may need an online desktop; the cloud never holds connected-app credentials or contacts those apps directly.
+
+Your Cloudflare account has daily limits. Openza spreads a large first sync over several days and pauses sync when the daily limit is reached.
+
+## Good to know
+
+**Does my data go to an Openza server?** No Openza-operated task-hosting service sits in the sync path. Your task copy is in your Cloudflare account. Cloudflare processes and stores that content; this is not end-to-end encryption.
+
+**Are Cloudflare charges possible?** Your resources count toward your own Cloudflare account's limits. Usage beyond your plan's allowances may incur charges. Review [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/) and [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/) before setup.
+
+**What if I disconnect or remove my cloud?** Disconnecting a desktop keeps its local tasks and does not delete the cloud. Removing Personal Cloud is different: it deletes its deployment and database. Download and verify a private SQL backup first. Treat updates and restores as deliberate steps; rolling back the Worker does not undo schema changes.
+
+**Can I use a shared browser?** Avoid shared browser profiles for private tasks. The Web app caches its last confirmed task copy locally; signing out revokes the session but does not erase that cache. Clear the site's data before leaving a shared device.
+
+See [Privacy and security](/privacy/) for how data, credentials, and recovery work. The [Personal Cloud source](https://github.com/openza/personal-cloud) is public.

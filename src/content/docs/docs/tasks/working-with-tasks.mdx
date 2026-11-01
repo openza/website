@@ -1,0 +1,51 @@
+---
+title: Working with tasks
+description: Capture, plan, complete, and delete tasks.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Add a task
+
+Select **Add task**, or press <kbd>Ctrl</kbd> + <kbd>N</kbd>. Only a title is required. You can also set notes, a project, a status, a date, a priority, and labels.
+
+New tasks start in **Inbox** unless you choose another status or project.
+
+## Status
+
+Status describes where a task stands in your workflow. It is separate from the project, so changing one never changes the other.
+
+| Status | Meaning |
+| --- | --- |
+| **Inbox** | Captured, not sorted yet |
+| **Next** | Ready to work on |
+| **Waiting For** | Blocked on someone or something else |
+| **Someday** | Not now, maybe later |
+| **None** | No workflow status |
+
+## Date and deadline
+
+- **Date** is when you intend to work on or see the task.
+- **Deadline** is the latest acceptable day for the outcome.
+
+Both are optional and independent. Today, Calendar, and Overdue use them to decide what to show.
+
+## Priority
+
+Choose **Urgent**, **High**, **Normal**, or **Low**.
+
+## Complete and reopen
+
+Select the checkbox on a task row, or use the complete button in task details. Completed tasks move to **Completed**. Reopen a task from there to make it open again. Completing a task keeps its dates and repeat settings.
+
+<Aside type="note" title="Repeating tasks">
+Repeat settings that come from Todoist or Microsoft To Do are kept. Completing a repeating task in Openza does not create the next occurrence by itself; the connected app advances it on the next sync.
+</Aside>
+
+## Delete
+
+Select **Delete** in task details and confirm. Deleting cannot be undone. A task still linked to Todoist or Microsoft To Do is managed in that app; delete it there and sync.
+
+## Copy
+
+Right-click a task to copy its title, notes, source, or all of its information.

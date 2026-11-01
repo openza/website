@@ -1,0 +1,52 @@
+---
+title: Connected apps
+description: Bring in tasks from Todoist and Microsoft To Do.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+Openza Tasks works on its own. Connect Todoist or Microsoft To Do only if you want their tasks alongside yours.
+
+## How it works
+
+1. Openza reads tasks from the connected app when you sync.
+2. New tasks wait in the **Connected tasks** pane of Inbox. Choose **Add** to bring a task into Openza, **Skip** to hide it, or **Add all to Inbox**.
+3. Added tasks stay linked to the original. Completing or reopening one in Openza updates the original on the next sync.
+4. Notes, labels, priority, project, and status you set in Openza stay in Openza.
+
+Start a sync from **Sync > Sync now**. To sync in the background, turn on **Settings > Integrations > Automatic sync**, which refreshes connected apps every five minutes while Openza Tasks is running.
+
+<Aside type="note" title="Date changes">
+If a date changes in the connected app after you set a different one in Openza, Openza asks which date to keep.
+</Aside>
+
+## Todoist
+
+<Steps>
+1. In Todoist on the web, open **Settings > Integrations > Developer** and copy your API token.
+2. In Openza Tasks, open **Settings > Integrations > Todoist**.
+3. Paste the token and select **Connect**.
+4. Select **Sync now**.
+</Steps>
+
+Openza imports Todoist tasks, projects, dates, and priorities. Todoist labels are kept as source information and stay out of your Openza labels.
+
+**Rules** let you send new Todoist tasks to a Space by label, or when they have no labels. Sync once so Openza knows your Todoist labels and projects, then select **Add rule**.
+
+<Aside type="caution">
+Treat the API token like a password. Openza stores it in your desktop keyring.
+</Aside>
+
+## Microsoft To Do
+
+<Steps>
+1. Open **Settings > Integrations > Microsoft To Do** and select **Connect / change account**.
+2. Openza shows a sign-in code. Open the Microsoft sign-in page, enter the code, and choose your account.
+3. Return to Openza and select **Sync now**.
+</Steps>
+
+Personal, work, and school Microsoft accounts work. You do not need to register anything with Microsoft yourself. Openza imports your lists and tasks, and Microsoft categories become labels.
+
+## Disconnect
+
+Select **Disconnect** next to the app in Settings. Tasks you already added stay in Openza.
