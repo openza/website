@@ -33,7 +33,7 @@ export const apps: App[] = [
 		id: 'tasks',
 		name: 'Openza Tasks',
 		icon: '/tasks.svg',
-		tagline: 'A simple local-first task app that grows with you, with an optional cloud you control.',
+		tagline: 'A simple local-first task app that grows with you, with an optional cloud you control (preview).',
 		source: 'https://github.com/openza/tasks',
 		install: 'docs/tasks/install',
 		downloads: [
